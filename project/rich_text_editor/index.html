@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!--// for pdf-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="toolbar">
+            <div class="btn-toolbar">
+                <button onclick="formatDoc('undo')"><i class="fa-solid fa-rotate-left"></i></button>
+                <button onclick="formatDoc('redo')"><i class="fa-solid fa-rotate-right"></i></button>
+                <button onclick="formatDoc('bold')"><i class="fa-sharp fa-solid fa-bold"></i></button>
+                <button onclick="formatDoc('underline')"><i class="fa-sharp fa-solid fa-underline"></i></button>
+                <button onclick="formatDoc('italic')"><i class="fa-sharp fa-solid fa-italic"></i></button>
+                <button onclick="formatDoc('strikethrough')"><i class="fa-solid fa-strikethrough"></i></button>
+                <button onclick="formatDoc('justifyLeft')"><i class="fa-sharp fa-solid fa-align-left"></i></button>
+                <button onclick="formatDoc('justifyRight')"><i class="fa-sharp fa-solid fa-align-right"></i></button>
+                <button onclick="formatDoc('justifyFull')"><i class="fa-sharp fa-solid fa-align-justify"></i></button>
+                <button onclick="formatDoc('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
+                <button onclick="formatDoc('insertUnorderedList')"><i class="fa-sharp fa-solid fa-list-ul"></i></button>
+               <button onclick="handleAddlink()"><i class="fa-solid fa-link"></i></button>
+                <button onclick="formatDoc('removeFormat')"><i class="fa-sharp fa-solid fa-text-slash"></i></button>
+                <button data-active="true" id="show-code"><i class="fa-solid fa-code"></i></button>
+            </div>
+            <div class="head">
+                <input type="text" placeholder="filename" value="file_name" id="filename"/>
+                <select onchange="handleFileExport(this.value)">
+                    <option value="new">New File</option>
+                    <option value="" selected hidden>File</option>
+                    <option value="txt">Save as Text</option>
+                    <option value="pdf">Save as Pdf</option>
+                </select>
+              <select onchange="formatDoc('formatBlock', this.value); this.selectedIndex=0;">
+                 <option value="" selected hidden>Format</option>
+                    <option value="h1">H1</option>
+                    <option value="h2">H2</option>
+                    <option value="h3">H3</option>
+                    <option value="h4">H4</option>
+                    <option value="h5">H5</option>
+                    <option value="h6">H6</option>
+                    <option value="p">Paragraph</option>
+              </select>
+                <select onchange="formatDoc('fontSize',this.value); this.selectedIndex=0;">
+                    <option value="" selected hidden>Font Size</option>
+                    <option value="1">Extra small</option>
+                    <option value="2">Small</option>
+                    <option value="3">Medium</option>
+                    <option value="4">Large</option>
+                    <option value="5">Extra Large</option>
+                </select>
+                  
+        
+                <div class="color">
+                    <span>color</span>
+                    <input type="color" oninput="formatDoc('forecolor',this.value)"/>
+                </div>
+                <div class="color">
+                    <span>Background color</span> 
+                    <input type="color"oninput="formatDoc('hiliteColor',this.value)">
+                </div>
+            </div>
+        </div>
+        <div id="content" contenteditable="true">
+            Start typing...
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
